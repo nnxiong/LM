@@ -1,0 +1,122 @@
+0、参数说明：
+  --user_input：用户操作指令
+  --ope_threshold：operation 提取阈值
+  --tar_threshold：target 提取阈值
+
+
+
+
+1、无需提取 text input:
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "点击护理操作戴手套，每名患者专用手套"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "保存到护理操作戴手套，每名患者专用手套"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "跳转到查看内外走廊和工作人员、患者的通道、管道井、配电房、机房、值班室、库房内物品存放是否符合要求，物品1处存放不符合要求"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "跳转到查看内外走廊和工作人员、患者的通道、管道井、配电房、机房、值班室、库房内物品存放是否符合要"}'
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "新增一个病历表"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "新增病历表"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "看一下监控室"}'
+
+
+
+
+
+2、需要提取 text input:
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "向藏点中写入适合工作"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "把确保每个医疗垃圾容器上都贴有清晰的标签，标明垃圾类型写入藏点"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "将患者的过敏史填进备注点，内容是该患者有青霉素过敏史，使用任何药物前务必仔细核对成分，避免使用含有青霉素或类似结构的药物。过敏反应严重时可导致休克，需立即停药并给予抗过敏治疗。已告知患者本人及家属相关风险，并要求其在就诊时务必主动告知医生。"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "将患者的过敏史填进备注点，该患者有青霉素过敏史，使用任何药物前务必仔细核对成分，避免使用含有青霉素或类似结构的药物。"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "在医疗垃圾分类放置、交接双签字执行到位处补充确保每个医疗垃圾容器上都贴有清晰的标签，标明垃圾类型，如感染性废物、病理性废物、损伤性废物等，以便医务人员正确分类，同时，每个垃圾容器都应设有明显的警示标识，提醒医务人员注意安全，避免接触有害物质。"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "在医疗垃圾分类放置、交接双签字执行到位处补充需明确责任人并定期进行检查与培训，首先，确保每个医疗垃圾容器上都贴有清晰的标签，标明垃圾类型，如感染性废物、病理性废物、损伤性废物等，以便医务人员正确分类，同时，每个垃圾容器都应设有明显的警示标识，提醒医务人员注意安全，避免接触有害物质，其次，交接环节必须严格执行双签字制度最后，定期进行医疗垃圾管理工作的检查，确保各项措施落实到位，通过上述措施，可以有效提高医疗垃圾管理的质量，保障医患双方的安全。"}'
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "往消毒剂注明开启时间，在有效期内写入开启时间为今天早上八点整"}'
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "往开启时间写入开启时间为今天早上八点整"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{"user_input": "把患者到院时间为12:30写进今日医疗时间中"}'
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+ -H "Content-Type: application/json"  \
+ -d '{"user_input": "在备注里面写上明天要打卡"}'
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_input": "备注一下明天上班要打卡"}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_input": "记录一下环境不整洁"}'
+
+
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_input": "关一下"}'
+
+
+
+
+
+3、调整 operation 与 target 提取阈值：
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_input": "浏览病历表",
+    "ope_threshold": 0.88,
+    "tar_threshold": 0.85}'
+
+curl -X POST "http://localhost:8930/extract_input" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "user_input": "把确保每个医疗垃圾容器上都贴有清晰的标签，标明垃圾类型写入藏点",
+    "ope_threshold": 0.88,
+    "tar_threshold": 0.85}'
