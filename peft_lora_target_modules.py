@@ -31,6 +31,32 @@ AutoModel 和 AutoModelForXXX 之间也存在类似的关系，可以理解为 A
 
 
 可参考链接：https://blog.csdn.net/weixin_42426841/article/details/142236561
+
+
+方法	返回值	是否包含参数名	典型用途
+model.parameters()	生成器（parameter）	❌ 否	通用优化器输入（如 optimizer = torch.optim.SGD(model.parameters())）
+model.named_parameters()	生成器（(name, parameter)）	✅ 是	需要参数名的操作（如选择性冻结、初始化、调试）
+
+ep:
+import torch
+import torch.nn as nn
+
+# 定义一个简单模型
+model = nn.Sequential(
+    nn.Linear(10, 20),  # 参数: weight (20x10), bias (20)
+    nn.ReLU(),
+    nn.Linear(20, 1)    # 参数: weight (1x20), bias (1)
+)
+
+# 遍历所有参数（无名称）
+for param in model.parameters():
+    print(f"Shape: {param.shape}, Requires_grad: {param.requires_grad}")
+
+Shape: torch.Size([20, 10]), Requires_grad: True
+Shape: torch.Size([20]), Requires_grad: True
+Shape: torch.Size([1, 20]), Requires_grad: True
+Shape: torch.Size([1]), Requires_grad: True
+
 '''
 
 from peft import LoraConfig, get_peft_model
